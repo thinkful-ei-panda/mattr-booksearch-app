@@ -5,9 +5,8 @@ class Book extends Component {
   render() {
 
     return (
-      <div className="ListItem">
-            {this.props.title}
-            {this.props.size}
+      <div className="ListItem-Book">
+           
           </div>
     );
   }

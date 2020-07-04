@@ -2,21 +2,21 @@ import React from 'react';
 import './App.css';
 import Header from './Header'
 import SearchBar from './SearchBar';
-import FilterableList from './FilterableList'
+import BookList from './BookList'
 
 class App extends React.Component {
   
   constructor(props) {
     super(props);
     this.state = {
-      searchTerm: '',
-      filterOption: 'All',
+      searchTerm: 'Jordan',
       results: []
     };
   }
 
+
   componentDidMount() {
-    const url = `https://www.googleapis.com/books/v1/volumes?q={this.state.searchTerm}`;
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${this.state.searchTerm}`;
     const requestOptions = {
       method: 'GET',
       redirect: 'follow'
@@ -35,7 +35,8 @@ class App extends React.Component {
           results: data,
           error: null
         });
-        console.log(data)
+        // console.log(this.state.results)
+        // console.log(data.items.map(item => item.volumeInfo.title))
       })
       .catch(err => {
         this.setState({
@@ -68,11 +69,15 @@ render(){
       handleFilterChange={option => this.updateFilterOption(option)}
       />
       
-      <FilterableList 
-        results={this.props.results}
+      <BookList
+      results={this.state.results} 
+      />
+
+      {/* <FilterableList 
+        results={this.state.results}
         searchTerm={this.state.searchTerm}
-        filterOption={this.state.filterOption} 
-        />
+        // filterOption={this.state.filterOption} 
+        /> */}
 
     </div>
 
