@@ -31,12 +31,13 @@ class App extends React.Component {
       })
       .then(res => res.json())
       .then(data => {
-        this.setState({
-          results: data,
-          error: null
-        });
+        // this.setState({
+        //   results: data,
+        //   error: null
+        // });
         // console.log(this.state.results)
-        // console.log(data.items.map(item => item.volumeInfo.title))
+        console.log(data.items.map(item => item.volumeInfo.title))
+        
       })
       .catch(err => {
         this.setState({
